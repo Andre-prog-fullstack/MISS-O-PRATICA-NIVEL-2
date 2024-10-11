@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Receitas</title>
+    <style>
+        body {
+            background: greenyellow;
+        }
+        #pnlCatalogo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card {
+            width: 250px;
+        }
+    </style>
+    <script>
+        // Vetor de receitas em formato JSON
+        const receitas = [
+            {
+                titulo: "Quindim de Caneca",
+                imagem: "quindim.jpg",
+                preparo: "Misture tudo e leve ao micro-ondas por 4 minutos.",
+                ingredientes: ["Coco ralado", "Leite de coco", "Açúcar", "Ovos", "Manteiga sem sal"]
+            },
+            {
+                titulo: "Macarrão Al Limone com Atum",
+                imagem: "macarrao.jpg",
+                preparo: "Cozinhe o macarrão e misture com os ingredientes.",
+                ingredientes: ["Atum", "Macarrão talharim", "Manteiga", "Creme de leite", "Suco de limão"]
+            },
+            {
+                titulo: "Salgadinho Simples de Airfryer",
+                imagem: "salgadinhos.jpg",
+                preparo: "Passe na airfryer por 15 minutos a 180°C.",
+                ingredientes: ["Queijo mussarela", "Farinha de trigo", "Ovos", "Mortadela"]
+            }
+        ];
+
+        // Função para gerar a lista de ingredientes em HTML
+        function getListaIngredientes(receita) {
+            return `<ul>` +
+                receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).reduce((acc, item) => acc + item, "") +
+                `</ul>`;
+        }
+
+        // Função para gerar o card da receita
+        function getCard(receita) {
+            return `
+            <div class="card">
+                <img src="${receita.imagem}" class="card-img-top" alt="${receita.titulo}">
+                <div class="card-body">
+                    <h5 class="card-title">${receita.titulo}</h5>
+                    <div class="card-text">
+                        ${getListaIngredientes(receita)}
+                        <hr>
+                        <p>${receita.preparo}</p>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        // Função para preencher o catálogo de receitas
+        function preencheCatalogo() {
+            const pnlCatalogo = document.getElementById("pnlCatalogo");
+            pnlCatalogo.innerHTML = receitas.map(receita => getCard(receita)).reduce((acc, card) => acc + card, "");
+        }
+    </script>
+</head>
+<body onload="preencheCatalogo()">
+    <header>
+        <h1>Catálogo de Receitas</h1>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        </nav>
+    </header>
+    <main style="padding: 10px;">
+        <div id="pnlCatalogo"></div>
+    </main>
+    <footer class="card-footer text-white text-center bg-dark">
+        <p>@André 2024</p>
+    </footer>
+</body>
+</html>

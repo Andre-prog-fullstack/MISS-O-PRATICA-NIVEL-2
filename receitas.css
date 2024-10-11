@@ -1,0 +1,35 @@
+main {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .card {
+    margin: 10px;
+    width: 260px;
+    height: 480px;
+    background-color:#f6e4b3;;
+    border-radius: solid 50px;
+    border-color: rgba(73, 48, 21, 0.795);
+  }
+  .card-img-top {
+    object-fit: cover;
+    height: 125px;
+  }
+  .card-title {
+    text-align: center;
+    font-weight: bold;
+  }
+  .card-text {
+    text-align: justify;
+  }
+  @media (max-width: 575px) {
+    main {
+      margin-top: 70px;
+      padding-bottom: 30px;
+      height: auto;
+    }
+    .card {
+      margin: 10px;
+      width: 200px;
+      height: 450px;
+    }
+  }
